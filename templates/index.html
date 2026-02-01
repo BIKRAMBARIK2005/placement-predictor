@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Placement Predictor</title>
+
+    <!-- Mobile responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>🎓 Placement Predictor</h2>
+    <p class="subtitle">
+        Predict student placement using IQ, CGPA, and company type
+    </p>
+
+    <form action="/predict" method="post">
+        <label>IQ</label>
+        <input type="number" step="any" name="iq" required>
+
+        <label>CGPA</label>
+        <input type="number" step="any" name="cgpa" required>
+
+        <label>Company Type</label>
+        <select name="company" required>
+            <option value="service">Service-Based (TCS / Infosys)</option>
+            <option value="product">Product-Based (Amazon / Google)</option>
+        </select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result-box">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
